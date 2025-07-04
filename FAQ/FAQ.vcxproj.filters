@@ -42,6 +42,9 @@
     <ClCompile Include="answerQuestionFromPrompt.cpp">
       <Filter>Arquivos de Origem\UseCases</Filter>
     </ClCompile>
+    <ClCompile Include="program.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="faq.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="answerQuestionFromPrompt.h">
       <Filter>Arquivos de Cabeçalho\UseCases</Filter>
+    </ClInclude>
+    <ClInclude Include="program.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

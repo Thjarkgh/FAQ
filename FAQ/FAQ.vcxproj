@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(VC_SourcePath)\..\vcpkg\installed\x64-windows\include\gsl</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
@@ -134,12 +134,14 @@
     <ClCompile Include="answerQuestionFromPrompt.cpp" />
     <ClCompile Include="faq.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="program.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addQuestionDefinitionFromPrompt.h" />
     <ClInclude Include="answerQuestionFromPrompt.h" />
     <ClInclude Include="faq.h" />
     <ClInclude Include="faqExceptions.h" />
+    <ClInclude Include="program.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
