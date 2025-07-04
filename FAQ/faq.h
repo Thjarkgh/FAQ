@@ -7,8 +7,7 @@
 typedef std::vector<std::string> AnswerList;
 typedef std::string Question;
 
-struct FAQQuestionDefinition
-{
+struct FAQQuestionDefinition {
 	const Question question;
 	const AnswerList answers;
 
@@ -17,8 +16,7 @@ struct FAQQuestionDefinition
 	}
 };
 
-class FAQ
-{
+class FAQ {
 private:
 	std::map<Question, AnswerList> faqData;
 

@@ -3,8 +3,7 @@
 #include <memory>
 #include "faq.h"
 
-class FAQParser
-{
+class FAQParser {
 public:
 	FAQQuestionDefinition parse(const std::string& line) const;
 };
