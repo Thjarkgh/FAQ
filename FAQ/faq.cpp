@@ -30,5 +30,5 @@ const std::string FAQ::getAnswers(const Question& question) const {
 		};
 		return std::accumulate(it->second.begin(), it->second.end(), std::string(""), line_break_fold);
 	}
-	return "the answer life, universe and everything is 42"; // Return empty list if question not found
+	return "the answer to life, universe and everything is 42";
 }

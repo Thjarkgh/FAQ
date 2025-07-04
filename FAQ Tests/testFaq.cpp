@@ -42,7 +42,7 @@ TEST(FAQTests, AddEntryAnswerTooLongThrows) {
 
 TEST(FAQTests, GetAnswersReturnsDefaultIfNotFound) {
     FAQ faq = FAQ();
-    EXPECT_EQ(faq.getAnswers("Unknown question"), "the answer life, universe and everything is 42");
+    EXPECT_EQ(faq.getAnswers("Unknown question"), "the answer to life, universe and everything is 42");
 }
 
 TEST(FAQTests, GetAnswersConcatenatesAnswers) {
