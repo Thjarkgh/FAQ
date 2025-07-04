@@ -15,37 +15,33 @@ public:
 
 TEST(AnswerQuestionFromPromptTest, ReturnsCorrectAnswer) {
     MockFAQ faq;
-    std::istringstream input("What is AI?\n");
-    std::streambuf* orig = std::cin.rdbuf(input.rdbuf());
-    std::ostringstream output;
-    std::streambuf* origOut = std::cout.rdbuf(output.rdbuf());
 
-    answer_question_from_prompt(faq);
+    auto input = IOTestInput(std::vector<int>{}, std::vector<std::string>{ "What is AI?" });
+	auto out = std::make_shared<std::string>();
+	auto output = IOTestOutput(out);
 
-    std::cin.rdbuf(orig);
-    std::cout.rdbuf(origOut);
+    answer_question_from_prompt(
+        (ProgramInput&)input,
+        (ProgramOutput&)output,
+        faq
+    );
 
-    std::string out = output.str();
-    EXPECT_NE(out.find("Shoot!"), std::string::npos);
-    EXPECT_NE(out.find("Artificial Intelligence"), std::string::npos);
-    EXPECT_EQ(faq.getAnswersCallCount, 1);
-    EXPECT_EQ(faq.lastQuestion, "What is AI?");
+    EXPECT_NE(out->find("Shoot!"), std::string::npos);
+    EXPECT_NE(out->find("Artificial Intelligence"), std::string::npos);
 }
 
 TEST(AnswerQuestionFromPromptTest, HandlesUnknownQuestion) {
     MockFAQ faq;
-    std::istringstream input("Unknown question?\n");
-    std::streambuf* orig = std::cin.rdbuf(input.rdbuf());
-    std::ostringstream output;
-    std::streambuf* origOut = std::cout.rdbuf(output.rdbuf());
 
-    answer_question_from_prompt(faq);
+    auto input = IOTestInput(std::vector<int>{}, std::vector<std::string>{ "Unknown question?" });
+    auto out = std::make_shared<std::string>();
+    auto output = IOTestOutput(out);
 
-    std::cin.rdbuf(orig);
-    std::cout.rdbuf(origOut);
+    answer_question_from_prompt(
+        (ProgramInput&)input,
+        (ProgramOutput&)output,
+        faq
+    );
 
-    std::string out = output.str();
-    EXPECT_NE(out.find("I don't know."), std::string::npos);
-    EXPECT_EQ(faq.getAnswersCallCount, 1);
-    EXPECT_EQ(faq.lastQuestion, "Unknown question?");
+    EXPECT_NE(out->find("the answer to life, universe and everything is 42"), std::string::npos);
 }

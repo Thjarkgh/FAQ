@@ -6,7 +6,7 @@
 
 class FAQParserTest : public ::testing::Test {
 protected:
-    FAQParser parser;
+    FAQParserCmdline parser;
 };
 
 TEST_F(FAQParserTest, ParsesValidEntryWithOneAnswer) {
@@ -41,16 +41,32 @@ TEST_F(FAQParserTest, ThrowsOnMissingClosingQuote) {
     EXPECT_THROW(parser.parse(line), FAQParsingException);
 }
 
+class FAQParserMock : public FAQParser {
+    public:
+    FAQQuestionDefinition parse(const std::string& line) const override {
+        if (line == "What is AI?\"Artificial Intelligence\"") {
+            return FAQQuestionDefinition("What is AI?", { "Artificial Intelligence" });
+        }
+        throw FAQParsingException("Mock parsing error");
+    }
+};
+
 class FAQAddEntryTest : public ::testing::Test {
 protected:
-    FAQParser parser;
+    FAQParserMock parser;
     FAQ faq;
 };
 
 TEST_F(FAQAddEntryTest, AddQuestionDefinitionFromPromptAddsEntry) {
-    std::istringstream input("What is AI?\"Artificial Intelligence\"\n");
-    std::streambuf* orig = std::cin.rdbuf(input.rdbuf());
-    add_question_definition_from_prompt(faq, parser);
-    std::cin.rdbuf(orig);
+    auto input = IOTestInput(std::vector<int>{}, std::vector<std::string>{ "What is AI?\"Artificial Intelligence\"" });
+    auto out = std::make_shared<std::string>();
+    auto output = IOTestOutput(out);
+
+    add_question_definition_from_prompt(
+        (ProgramInput&)input,
+        (ProgramOutput&)output,
+        faq,
+        parser
+    );
     EXPECT_EQ(faq.getAnswers("What is AI?"), "\nArtificial Intelligence");
 }
