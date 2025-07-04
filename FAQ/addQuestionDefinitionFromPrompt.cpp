@@ -1,8 +1,7 @@
 #include "AddQuestionDefinitionFromPrompt.h"
 #include "faqExceptions.h"
-#include <iostream>
 
-FAQQuestionDefinition FAQParser::parse(const std::string& line) const {
+FAQQuestionDefinition FAQParserCmdline::parse(const std::string& line) const {
 	size_t questionEnd = line.find('?');
 	if (questionEnd == std::string::npos) {
 		throw FAQParsingException("Invalid FAQ entry format");
@@ -30,14 +29,18 @@ FAQQuestionDefinition FAQParser::parse(const std::string& line) const {
 	return FAQQuestionDefinition(std::move(question), answers);
 }
 
-void add_question_definition_from_prompt(FAQ& faq, FAQParser parser) {
+void add_question_definition_from_prompt(ProgramInput& input, ProgramOutput& output, FAQ& faq) {
+	FAQParserCmdline parser = FAQParserCmdline();
+	add_question_definition_from_prompt(input, output, faq, parser);
+}
+
+void add_question_definition_from_prompt(ProgramInput& input, ProgramOutput& output, FAQ& faq, const FAQParser& parser) {
 	try {
-		std::cout << "Enter new question and answers in the format: <question>? \"<answer1>\" \"<answer2>\" \"<answerX>\"\n";
-		std::string input;
-		std::getline(std::cin, input);
-		const FAQQuestionDefinition parsed = parser.parse(input);
+		output.write("Enter new question and answers in the format: <question>? \"<answer1>\" \"<answer2>\" \"<answerX>\"\n");
+		std::string input_str = input.getLine();
+		const FAQQuestionDefinition parsed = parser.parse(input_str);
 		faq.add_question_definition(parsed);
-		std::cout << "Question added.\n";
+		output.write("Question added.\n");
 	}
 	catch (const FAQParsingException& e) {
 		std::cerr << "Error parsing question: " << e.what() << "\n";

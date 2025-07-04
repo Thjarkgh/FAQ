@@ -1,11 +1,18 @@
 #pragma once
 #include <string>
-#include <memory>
 #include "faq.h"
+#include "program.h"
 
 class FAQParser {
 public:
-	FAQQuestionDefinition parse(const std::string& line) const;
+	virtual FAQQuestionDefinition parse(const std::string& line) const = 0;
+	virtual ~FAQParser() = default;
 };
 
-void add_question_definition_from_prompt(FAQ& faq, FAQParser parser = FAQParser());
+class FAQParserCmdline : public FAQParser {
+public:
+	FAQQuestionDefinition parse(const std::string& line) const override;
+};
+
+void add_question_definition_from_prompt(ProgramInput& input, ProgramOutput& output, FAQ& faq);
+void add_question_definition_from_prompt(ProgramInput& input, ProgramOutput& output, FAQ& faq, const FAQParser& parser);
