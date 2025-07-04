@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Arquivos de Origem">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Arquivos de Recurso">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Domain">
+      <UniqueIdentifier>{374e2219-81f1-4fb2-aa91-1b3de9d6405e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\UseCases">
+      <UniqueIdentifier>{68c7fd71-965d-4495-923c-245a45daeca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Domain">
+      <UniqueIdentifier>{143314f0-b55d-4e76-afe0-3f78ad091270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\UseCases">
+      <UniqueIdentifier>{00cf51ff-1d9d-4079-87f8-0cfcebd36ee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Exceptions">
+      <UniqueIdentifier>{461d3ffa-9108-49c0-b20f-020f8abc41c0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="faq.cpp">
+      <Filter>Arquivos de Origem\Domain</Filter>
+    </ClCompile>
+    <ClCompile Include="addQuestionDefinitionFromPrompt.cpp">
+      <Filter>Arquivos de Origem\UseCases</Filter>
+    </ClCompile>
+    <ClCompile Include="answerQuestionFromPrompt.cpp">
+      <Filter>Arquivos de Origem\UseCases</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="faq.h">
+      <Filter>Arquivos de Cabeçalho\Domain</Filter>
+    </ClInclude>
+    <ClInclude Include="addQuestionDefinitionFromPrompt.h">
+      <Filter>Arquivos de Cabeçalho\UseCases</Filter>
+    </ClInclude>
+    <ClInclude Include="faqExceptions.h">
+      <Filter>Arquivos de Cabeçalho\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="answerQuestionFromPrompt.h">
+      <Filter>Arquivos de Cabeçalho\UseCases</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
