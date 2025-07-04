@@ -7,18 +7,10 @@
 // Mock FAQ class for testing
 class MockFAQ : public FAQ {
 public:
-    MockFAQ() : FAQ() {}
-
-    mutable std::string lastQuestion;
-    mutable int getAnswersCallCount = 0;
-
-    const std::string getAnswers(const Question& question) const override {
-        ++getAnswersCallCount;
-		lastQuestion = std::string(question);
-        if (question == "What is AI?") return "Artificial Intelligence";
-        if (question == "What is C++?") return "A programming language";
-        return "I don't know.";
-    }
+    MockFAQ() : FAQ(std::map<std::string, std::vector<std::string>>{
+        { "What is AI?", {"Artificial Intelligence"} },
+        { "What is C++?", {"A programming language"} }
+    }) {}
 };
 
 TEST(AnswerQuestionFromPromptTest, ReturnsCorrectAnswer) {

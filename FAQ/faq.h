@@ -25,7 +25,5 @@ public:
 	virtual ~FAQ() = default;
 
 	void add_question_definition(const FAQQuestionDefinition& entry);
-
-	// Note: This method is virtual to allow mocking in tests without gmock. => TODO
-	virtual const std::string getAnswers(const Question& question) const;
+	const std::string getAnswers(const Question& question) const;
 };
